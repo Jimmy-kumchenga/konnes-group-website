@@ -26,7 +26,7 @@ html,body{height:100%;
   --kng-container-w: 1180px;
 }
 
-/* container (adjust to your existing .container if needed) */
+/* container*/
 .container { max-width: var(--kng-container-w); margin: 0 auto; padding: 0 20px; }
 
 /* topbar */
@@ -45,11 +45,11 @@ html,body{height:100%;
 /* CTA */
 .kng-btn-cta { background: linear-gradient(90deg,#ff7a66,#f26b0b); color:#fff; padding:10px 20px; border-radius:28px; text-decoration:none; font-weight:700; }
 
-/* hamburger (hidden desktop) */
+/* hamburger  */
 .kng-hamburger { display:none; background:transparent; border:0; padding:8px; cursor:pointer; }
 .kng-hamburger-box span{ display:block; width:22px; height:2px; background:#0b2340; margin:4px 0; border-radius:2px; }
 
-/* mobile menu (hidden) */
+/* mobile menu */
 .kng-mobile-menu { display:none; background:#fff; border-top:1px solid rgba(11,35,64,0.04); padding:12px 20px; }
 .kng-mobile-menu ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px; }
 .kng-mobile-menu a { color: var(--kng-dark); text-decoration:none; font-weight:600; }
@@ -1417,4 +1417,5 @@ html,body{height:100%;
 }
 
 /* small focus outline for keyboard users */
+
 .kngf-social-link:focus, .kngf-contact-link:focus { outline: 3px solid rgba(14,61,132,0.12); outline-offset: 3px; }
