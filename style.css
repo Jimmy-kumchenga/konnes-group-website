@@ -389,7 +389,11 @@ html,body{height:100%;
   margin-bottom:18px;
 }
 .od-dot{
-  width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--accent);
+  display:inline-block;
 }
 .od-title{
   margin: 10px 0 8px;
@@ -406,12 +410,11 @@ html,body{height:100%;
   line-height: 1.4; 
 }
 
-
 /* Cards container */
 .od-cards{
   padding: 22px 0 72px;
   display: grid;
-  gap: 28px;
+  gap: 28px; /* Space between cards */
 }
 
 /* Card base */
@@ -432,7 +435,9 @@ html,body{height:100%;
 }
 .od-card--reverse .od-card-body,
 .od-card--reverse .od-features,
-.od-card--reverse .od-card-desc { direction: ltr; } /* reset text direction */
+.od-card--reverse .od-card-desc { 
+  direction: ltr; 
+}
 
 /* Media (image) */
 .od-card-media{
@@ -461,7 +466,9 @@ html,body{height:100%;
   margin:4px 0 12px;
   font-weight:800;
 }
-.od-title--orange{ color: var(--accent); }
+.od-title--orange{ 
+  color: var(--accent); 
+}
 
 /* Description */
 .od-card-desc{
@@ -485,12 +492,24 @@ html,body{height:100%;
   gap:12px;
   align-items:flex-start;
   text-align: left;
-  align-items: flex-start;
-  justify-content: flex-start;
 }
-.od-ico{ display:inline-flex; align-items:center; justify-content:center; min-width:36px; color:var(--dark); }
-.od-feature-text strong{ display:block; font-size:14px; color:var(--dark); }
-.od-feature-sub{ display:block; font-size:13px; color:var(--muted); }
+.od-ico{ 
+  display:inline-flex; 
+  align-items:center; 
+  justify-content:center; 
+  min-width:36px; 
+  color:var(--dark); 
+}
+.od-feature-text strong{ 
+  display:block; 
+  font-size:14px; 
+  color:var(--dark); 
+}
+.od-feature-sub{ 
+  display:block; 
+  font-size:13px; 
+  color:var(--muted); 
+}
 
 /* Buttons */
 .od-btn{
@@ -510,25 +529,69 @@ html,body{height:100%;
 }
 
 @media (min-width: 1100px){
-  .od-card{ padding: 28px; }
-  .od-img{ max-height:360px; border-radius:12px; }
+  .od-card{ 
+    padding: 28px; 
+  }
+  .od-img{ 
+    max-height:360px; 
+    border-radius:12px; 
+  }
 }
 
 /* Responsive: stack card content for small screens */
 @media (max-width: 900px){
-  .od-title{ font-size:32px; }
-  .od-card{ grid-template-columns: 1fr; gap:20px; padding:18px; }
-  .od-card--reverse{ direction: ltr; } /* don't flip on small screens */
-  .od-img{ max-height:320px; }
-  .od-card-title{ font-size:26px; }
-  .od-card-desc{ font-size:16px; }
+  .od-title{ 
+    font-size:32px; 
+  }
+  
+  /* FIXED: Keep consistent spacing between cards on mobile */
+  .od-cards{
+    gap: 32px; /* Increased gap for mobile - more visible spacing */
+  }
+  
+  .od-card{ 
+    grid-template-columns: 1fr; 
+    gap:20px; 
+    padding:18px; 
+    margin-bottom: 0; /* Remove any extra margin */
+  }
+  .od-card--reverse{ 
+    direction: ltr; 
+  }
+  .od-img{ 
+    max-height:320px; 
+  }
+  .od-card-title{ 
+    font-size:26px; 
+  }
+  .od-card-desc{ 
+    font-size:16px; 
+  }
 }
 
 /* Very small screens */
 @media (max-width: 480px){
-  .od-title{ font-size:22px; }
-  .od-card-desc{ font-size:15px; }
-  .od-img{ max-height:220px; border-radius:10px; }
+  .od-title{ 
+    font-size:22px; 
+  }
+  
+  /* FIXED: Maintain clear spacing on very small screens */
+  .od-cards{
+    gap: 28px; /* Clear visible gap between cards */
+    padding: 22px 12px 72px; /* Adjust side padding */
+  }
+  
+  .od-card{
+    padding: 16px; /* Slightly less padding inside cards */
+  }
+  
+  .od-card-desc{ 
+    font-size:15px; 
+  }
+  .od-img{ 
+    max-height:220px; 
+    border-radius:10px; 
+  }
 }
 
 /* about*/
@@ -594,7 +657,7 @@ html,body{height:100%;
 
 /* highlight center panel */
 .panel--highlight{
-  background:var(--highlight-bg);
+  background:var(--panel-bg);
   padding-bottom:96px; 
   z-index:2;
 }
@@ -1420,10 +1483,9 @@ html,body{height:100%;
 /* small focus outline for keyboard users */
 .kngf-social-link:focus, .kngf-contact-link:focus { outline: 3px solid rgba(14,61,132,0.12); outline-offset: 3px; }
 
-
 /*issue resolving at last*/
 /* ========================================
-   CAROUSEL STYLES - FORCE OVERRIDE
+   CAROUSEL STYLES - OPTIMIZED
    ======================================== */
 
 /* Carousel container - CONSISTENT ACROSS ALL DEVICES */
@@ -1459,9 +1521,9 @@ html,body{height:100%;
   bottom: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  opacity: 0 !important;
-  transform: scale(.98) !important;
-  transition: opacity .45s ease, transform .45s ease !important;
+  opacity: 0;
+  transform: scale(.98);
+  transition: opacity .45s ease, transform .45s ease;
   pointer-events: none !important;
   z-index: 1 !important;
 }
@@ -1474,8 +1536,8 @@ html,body{height:100%;
 
 /* CRITICAL: Active slide - only this should be visible */
 .hero-right .slide.active {
-  opacity: 1 !important;
-  transform: scale(1) !important;
+  opacity: 1;
+  transform: scale(1);
   pointer-events: auto !important;
   z-index: 2 !important;
   display: block !important;
@@ -1532,7 +1594,6 @@ html,body{height:100%;
 .hero-right .carousel-control {
   position: absolute !important;
   top: 50% !important;
-  transform: translateY(-50%) !important;
   background: rgba(0,0,0,0.65) !important;
   color: #fff !important;
   border: 0 !important;
@@ -1546,7 +1607,8 @@ html,body{height:100%;
   z-index: 6 !important;
   box-shadow: 0 4px 12px rgba(0,0,0,.3) !important;
   font-size: 20px !important;
-  transition: background-color 0.2s ease !important;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease;
 }
 
 .hero-right .carousel-control:hover {
@@ -1578,12 +1640,13 @@ html,body{height:100%;
   background: #ddd !important;
   border: 0 !important;
   cursor: pointer !important;
-  transition: all 0.3s ease !important;
+  transform: scale(1);
+  transition: all 0.3s ease;
 }
 
 .hero-right .dot.active {
   background: #0a172d !important;
-  transform: scale(1.2) !important;
+  transform: scale(1.2);
 }
 
 .hero-right .carousel-caption-title {
@@ -1718,6 +1781,4 @@ html,body{height:100%;
     height: 32px !important;
     font-size: 14px !important;
   }
-
 }
-
