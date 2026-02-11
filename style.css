@@ -1,4 +1,3 @@
-
 /* ===================================================================
    Base & Variables
    =================================================================== */
@@ -160,10 +159,7 @@ body {
   .hero-desc { margin-left: auto; margin-right: auto; font-size: 18px; }
   .hero-ctas { justify-content: center; }
 }
-.slide.hidden { display: none; }
-.slide {
-  transition: transform 0.5s ease-in-out;
-}
+
 
 .fancy-btn {
   background: linear-gradient(45deg, #ff6b6b, #ee5a24);
@@ -1565,5 +1561,3 @@ body {
     font-size: 14px;
   }
 }
-/* Original CSS from commit 2819977ac7528498ffccc505018f40634b249aa7 */
-/* Add the complete CSS content here */
