@@ -142,7 +142,7 @@ body {
   .kng-nav { display: none; }
   .kng-topbar-actions .kng-btn-cta { display: none; } /* Hide header button, show in menu */
   .kng-hamburger { display: block; }
-   .kng-topbar-inner{padding: 5px;}
+   .kng-topbar-inner{padding: 10px;}
 
   /* Hero adjustments */
   .hero {
