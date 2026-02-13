@@ -3,7 +3,7 @@
    =================================================================== */
 :root {
   /* Colors */
-  --accent: #f26b0b;
+  --accent: #fc8f42;
   --dark: #0b2340;
   --muted: #6b7280;
   --bg: #ffffff;
@@ -45,7 +45,7 @@ body {
 /* ===================================================================
    Topbar Navigation
    =================================================================== */
-.kng-topbar { background: #fff; position: sticky; top: 0; z-index: 999; box-shadow: 0 1px 0 rgba(11,35,64,0.04); }
+.kng-topbar { background: #fff; position: sticky; top: 0; z-index: 999; box-shadow: 0 1px 0 rgba(11,35,64,0.04); padding:5px; }
 .kng-topbar-inner { height: var(--nav-height); display:flex; align-items:center; justify-content:space-between; gap:20px; }
 
 /* brand */
@@ -1002,7 +1002,7 @@ body {
 
 /* Design tokens (unique names) */
 :root{
-  --kngcta-accent: #f26b0b;
+  --kngcta-accent: #fc9851;
   --kngcta-navy-1: #273953; /* left */
   --kngcta-navy-2: #2f5f85; /* right */
   --kngcta-text: #ffffff;
