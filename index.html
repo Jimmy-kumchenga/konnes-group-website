@@ -811,58 +811,82 @@
                 const nextButton = heroCarousel.querySelector('.carousel-control.next');
                 const prevButton = heroCarousel.querySelector('.carousel-control.prev');
                 const dotsContainer = heroCarousel.querySelector('.carousel-dots');
-                const dots = Array.from(dotsContainer.querySelectorAll('.dot'));
-                const slideIntervalTime = 5500; // 5.5 seconds
+                const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.dot')) : [];
+                const slideIntervalTime = 5500;
                 let currentIndex = 0;
                 let slideInterval;
+                let touchStartX = 0;
+                let touchEndX = 0;
 
                 const moveToSlide = (targetIndex) => {
-                    if (currentIndex === targetIndex || !slides[targetIndex]) return;
+                    // Handle wrap-around
+                    if (targetIndex < 0) targetIndex = slides.length - 1;
+                    if (targetIndex >= slides.length) targetIndex = 0;
+
+                    if (currentIndex === targetIndex) return;
 
                     slides[currentIndex].classList.remove('active');
-                    dots[currentIndex].classList.remove('active');
+                    if (dots[currentIndex]) dots[currentIndex].classList.remove('active');
 
                     slides[targetIndex].classList.add('active');
-                    dots[targetIndex].classList.add('active');
+                    if (dots[targetIndex]) dots[targetIndex].classList.add('active');
 
                     currentIndex = targetIndex;
                 };
 
                 const startAutoplay = () => {
-                    stopAutoplay(); // Prevent multiple intervals
+                    stopAutoplay();
                     slideInterval = setInterval(() => {
-                        const nextIndex = (currentIndex + 1) % slides.length;
-                        moveToSlide(nextIndex);
+                        moveToSlide(currentIndex + 1);
                     }, slideIntervalTime);
                 };
 
                 const stopAutoplay = () => {
-                    clearInterval(slideInterval);
+                    if (slideInterval) clearInterval(slideInterval);
                 };
 
-                const handleManualNavigation = (newIndex) => {
+                // Click Events
+                if (nextButton) {
+                    nextButton.addEventListener('click', () => {
+                        stopAutoplay();
+                        moveToSlide(currentIndex + 1);
+                        startAutoplay();
+                    });
+                }
+
+                if (prevButton) {
+                    prevButton.addEventListener('click', () => {
+                        stopAutoplay();
+                        moveToSlide(currentIndex - 1);
+                        startAutoplay();
+                    });
+                }
+
+                if (dotsContainer) {
+                    dotsContainer.addEventListener('click', e => {
+                        const targetDot = e.target.closest('button.dot');
+                        if (!targetDot) return;
+                        const targetIndex = parseInt(targetDot.dataset.index, 10);
+                        stopAutoplay();
+                        moveToSlide(targetIndex);
+                        startAutoplay();
+                    });
+                }
+
+                // Swipe Support (Touch)
+                heroCarousel.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
                     stopAutoplay();
-                    moveToSlide(newIndex);
+                }, { passive: true });
+
+                heroCarousel.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    if (touchEndX < touchStartX - 50) moveToSlide(currentIndex + 1); // Swipe Left
+                    if (touchEndX > touchStartX + 50) moveToSlide(currentIndex - 1); // Swipe Right
                     startAutoplay();
-                };
+                }, { passive: true });
 
-                nextButton.addEventListener('click', () => {
-                    const nextIndex = (currentIndex + 1) % slides.length;
-                    handleManualNavigation(nextIndex);
-                });
-
-                prevButton.addEventListener('click', () => {
-                    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-                    handleManualNavigation(prevIndex);
-                });
-
-                dotsContainer.addEventListener('click', e => {
-                    const targetDot = e.target.closest('button.dot');
-                    if (!targetDot) return;
-                    const targetIndex = parseInt(targetDot.dataset.index, 10);
-                    if (targetIndex !== currentIndex) handleManualNavigation(targetIndex);
-                });
-
+                // Mouse Hover (Desktop)
                 heroCarousel.addEventListener('mouseenter', stopAutoplay);
                 heroCarousel.addEventListener('mouseleave', startAutoplay);
 
