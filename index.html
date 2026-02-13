@@ -617,7 +617,7 @@
                     <div style="text-align: center; margin-top: 40px;">
                         <a href="contact.html" class="kngct-btn kngct-btn--primary"
                             style="display: inline-flex; align-items: center; gap: 8px;">
-                            <span>Contact Now</span>
+                            <span>View Full Contact Details</span>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                                 <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" />
@@ -953,14 +953,21 @@
 
             if (hamburger && mobileMenu) {
                 hamburger.addEventListener('click', () => {
-                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-                    hamburger.setAttribute('aria-expanded', !isExpanded);
-                    mobileMenu.classList.toggle('kng-open');
+                    const isOpen = mobileMenu.classList.contains('kng-open');
+
+                    if (isOpen) {
+                        mobileMenu.classList.remove('kng-open');
+                        mobileMenu.setAttribute('aria-hidden', 'true');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    } else {
+                        mobileMenu.classList.add('kng-open');
+                        mobileMenu.setAttribute('aria-hidden', 'false');
+                        hamburger.setAttribute('aria-expanded', 'true');
+                    }
                 });
             }
         });
     </script>
-    <script src="KG.js"></script>
 </body>
 
 </html>
